@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:to_do/Controller/auth_controller.dart';
 import 'package:to_do/View/Constant/app_strings.dart';
 import 'package:to_do/View/Constant/color_utils.dart';
+import 'package:to_do/View/Constant/show_toast.dart';
 import 'package:to_do/View/Widgets/app_text.dart';
 import 'package:to_do/View/Widgets/common_button.dart';
 import 'package:to_do/View/Widgets/common_textfield.dart';
@@ -31,7 +32,8 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: height * 0.07, bottom: height * 0.08),
+                  padding: EdgeInsets.only(
+                      top: height * 0.07, bottom: height * 0.08),
                   child: appText(
                     title: AppString.login,
                     fontSize: height * 0.035,
@@ -61,7 +63,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: CommonFullButton(
                       isLoading: authController.loader,
                       onPressed: () async {
-                        await controller.sendOTP(controller.phoneNumber.text, context);
+                        if (controller.phoneNumber.text.isEmpty) {
+                          showErrorToast('Please Enter Mobile Number');
+                        } else {
+                          await controller.sendOTP(
+                              controller.phoneNumber.text, context);
+                        }
                       },
                       title: AppString.sendOtp),
                 ),

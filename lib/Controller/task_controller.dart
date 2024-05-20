@@ -130,4 +130,13 @@ class TaskController extends GetxController {
       showErrorToast("Error: $e");
     }
   }
+
+  Future markAsCompleted(String documentId) async {
+    await fireStore.collection("task").doc(documentId).update({
+      'status': 'Completed'
+    });
+    showToast("Task Completed Successfully");
+    update();
+  }
+
 }
