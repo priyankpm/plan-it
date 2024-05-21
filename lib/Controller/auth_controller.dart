@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -81,6 +82,7 @@ class AuthController extends GetxController {
         setShowLoader(false);
         showToast('Otp Verify Successfully');
         await preferences.putBool("isLogin", true);
+        // addTaskCollection();
         Get.offAll(() => const TaskScreen(), transition: Transition.fadeIn);
 
         /// ADD LOGIC FOR STORE DATA OR NAVIGATE TO NEXT SCREEN
@@ -93,6 +95,27 @@ class AuthController extends GetxController {
       // _preferences.setBool("token", false);
       setShowLoader(false);
       showErrorToast("OTP verification failed");
+    }
+  }
+
+  /// Add Task To Firebase
+  Future<void> addTaskCollection() async {
+    try {
+      setShowLoader(true);
+      update();
+
+      await FirebaseFirestore.instance.collection('user').doc(FirebaseAuth.instance.currentUser?.uid).set({
+        'userId': FirebaseAuth.instance.currentUser?.uid,
+      });
+      setShowLoader(false);
+      update();
+      Get.back();
+      showToast("Task Added Successfully");
+    } catch (e) {
+      setShowLoader(false);
+      update();
+      debugPrint("Catch Error ====> $e");
+      showErrorToast("Error: $e");
     }
   }
 }

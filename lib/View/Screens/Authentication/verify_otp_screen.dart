@@ -18,8 +18,7 @@ class VerifyOtpScreen extends StatefulWidget {
 
 class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   AuthController authController = Get.put(AuthController());
-  StreamController<ErrorAnimationType> errorController =
-      StreamController<ErrorAnimationType>();
+  StreamController<ErrorAnimationType> errorController = StreamController<ErrorAnimationType>();
   TextEditingController otpController = TextEditingController();
 
   @override
@@ -48,8 +47,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(
-                      top: height * 0.06, bottom: height * 0.08),
+                  padding: EdgeInsets.only(top: height * 0.06, bottom: height * 0.08),
                   child: appText(
                     title: AppString.verifyOtp,
                     fontSize: height * 0.035,
@@ -59,8 +57,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                 Padding(
                   padding: EdgeInsets.only(bottom: height * 0.02),
                   child: appText(
-                    title:
-                        '${AppString.sendOtpOnMobileNumber}${widget.mobileNumber}',
+                    title: '${AppString.sendOtpOnMobileNumber}${widget.mobileNumber}',
                     fontSize: height * 0.02,
                     fontWeight: FontWeight.w400,
                   ),

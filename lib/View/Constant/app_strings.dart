@@ -21,7 +21,9 @@ class AppString {
   static const enterTitle = 'Please Enter Title';
   static const enterDescription = 'Please Enter Description';
   static const addTask = 'Add Task';
+  static const editTask = 'Edit Task';
   static const selectTime = 'Please Select Time';
   static const selectDate = 'Please Select Date';
   static const cancel = 'Cancel';
+  static const delete = 'Delete';
 }
